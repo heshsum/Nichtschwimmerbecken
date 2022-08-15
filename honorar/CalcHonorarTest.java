@@ -1,11 +1,20 @@
 package honorar;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-
+/**
+ * Klasse um CalcHonorar zu testen.
+ */
 public class CalcHonorarTest {
-    CalcHonorar ch = new CalcHonorar();
+    CalcHonorar ch;
+
+    /** Honorar Objekt für Tests. */
+    @BeforeEach
+    void setUp() {
+        ch = new CalcHonorar();
+    }
 
     @Test
     void testHonorar() {
@@ -20,17 +29,14 @@ public class CalcHonorarTest {
     void zuKurzerText() {
         String s = "Hallo Welt";
         Assertions.assertThrows(IllegalArgumentException.class,
-                () -> {
-                    ch.getHonorar(s);
-                });
+                () -> ch.getHonorar(s));
     }
 
     @Test
     void honorarBerechnung() {
         StringBuilder s = new StringBuilder();
         String li = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean m";
-        s.append(li.repeat(100));
-        int honorar;
-        Assertions.assertEquals(ch.getHonorar(s.toString()), 100);
+        s.append(li.repeat(10));
+        Assertions.assertEquals(8, ch.getHonorar(s.toString()));
     }
 }
