@@ -2,27 +2,32 @@ package calculator;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 class CalculatorTest {
 
+    /** Calculator Object for testing. */
     Calculator c;
 
     @BeforeEach
-    void setUp() throws Exception {
+    void setUp() {
         c = new Calculator();
     }
-    @org.junit.jupiter.api.Test
+    @Test
     void add() {
+        Assertions.assertEquals(23, c.add(11, 12));
+        Assertions.assertNotEquals(23 , c.add(11, 11));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void sub() {
+        Assertions.assertEquals(0, c.sub(11, 11));
+        Assertions.assertEquals(23, c.sub(11, -12));
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
     void div() {
         Assertions.assertThrows(ArithmeticException.class,
-                () -> {c.div(42,0);
-        });
+                () -> c.div(42, 0));
     }
 }
