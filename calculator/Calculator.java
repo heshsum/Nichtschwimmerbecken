@@ -33,9 +33,9 @@ public class Calculator {
      * @throws ArithmeticException if b is zero
      */
     public int div(int a, int b) throws ArithmeticException {
-        if (b == 0) {
-            throw new ArithmeticException();
+        if (b != 0) {
+            return a / b;
         }
-        return a / b;
+        throw new ArithmeticException();
     }
 }
